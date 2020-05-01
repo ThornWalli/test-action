@@ -15,7 +15,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: dist
-          path: ./
+          path: dist
   deploy:
     name: Deploy
     needs: build
@@ -27,9 +27,13 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: dist
-          path: ./public
+          path: dist
+      - name: Prepare
+          - mkdir gh-pages
+          - cp -R dist/* gh-pages/
+          - touch gh-pages/.nojekyll
       - name: Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: gh-pages
