@@ -27,7 +27,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: dist
-          path: ./
+          path: ./public
       - name: Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
