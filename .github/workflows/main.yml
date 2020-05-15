@@ -1,4 +1,4 @@
-name: Build and Deploy (GH-Pages)
+name: Build and Deploy
 on:
   push:
     branches:
@@ -6,35 +6,51 @@ on:
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
+    name: 'Build'
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [12]
+
     steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
+
+      - name: cache node_modules
+        uses: actions/cache@v1
+        id: cache
         with:
-          name: dist
-          path: ./
+          path: node_modules
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+
   deploy:
     name: Deploy
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [12]
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
-          name: dist
-          path: dist
-      - name: Prepare
-        run: |
-          mkdir gh-pages
-          cp -R dist/* gh-pages/
-          touch gh-pages/.nojekyll
+          name: dists
+          path: dists
       - name: Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: gh-pages
+          publish_dir: dists/ghpages
