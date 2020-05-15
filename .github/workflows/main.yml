@@ -33,6 +33,12 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: build
+          path: .
+
 
   deploy:
     name: Deploy
@@ -47,8 +53,8 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
-          name: dists
-          path: dists
+          name: build
+          path: .
       - name: Semantic Release
         run: |
           npm i semantic-release @semantic-release/exec @semantic-release/git @semantic-release/changelog --no-save
@@ -57,4 +63,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          publish_dir: public
