@@ -7,7 +7,10 @@
     "test": "node index.js"
   },
   "private": true,
-  "repository": "ThornWalli/test-action",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ThornWalli/test-action.git"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
