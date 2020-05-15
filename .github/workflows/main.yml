@@ -56,9 +56,11 @@ jobs:
           name: build
           path: .
       - name: Semantic Release
-        run: npx semantic-release --provider=github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm i semantic-release @semantic-release/exec @semantic-release/git @semantic-release/changelog --no-save
+          npx semantic-release --provider=github
       - name: Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
