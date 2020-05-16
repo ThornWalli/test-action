@@ -1,5 +1,14 @@
 # Project Changelog
 
+## [1.0.5](https://github.com/ThornWalli/test-action/compare/v1.0.4...v1.0.5) (2020-05-16)
+
+
+### Bug Fixes
+
+* **readme:** readme ([5aa1449](https://github.com/ThornWalli/test-action/commit/5aa14496cca414b700ce4f1889c5db2d8b8c6b9b))
+* **test:** test 3 ([aa56542](https://github.com/ThornWalli/test-action/commit/aa565427772f4d4f1607e1e747622d651d325b93))
+* **test:** tst ([f7938cd](https://github.com/ThornWalli/test-action/commit/f7938cdb3fa4c562c883720b200bdbe536b0e9dd))
+
 ## [1.0.4](https://github.com/ThornWalli/test-action/compare/v1.0.3...v1.0.4) (2020-05-16)
 
 
