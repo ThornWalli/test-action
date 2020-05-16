@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.0.2](https://github.com/ThornWalli/test-action/compare/v1.0.1...v1.0.2) (2020-05-16)
+
+
+### Bug Fixes
+
+* **workflow:** test 1 ([d28d7e2](https://github.com/ThornWalli/test-action/commit/d28d7e226e08877222fcef56d5a029931eb79c73))
+
 ## [1.0.1](https://github.com/ThornWalli/test-action/compare/v1.0.0...v1.0.1) (2020-05-15)
 
 
