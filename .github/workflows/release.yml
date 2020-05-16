@@ -21,6 +21,8 @@ jobs:
 
       - name: Checkout Repo
         uses: actions/checkout@v1
+        with:
+          ref: refs/heads/master
 
       - name: cache node_modules
         uses: actions/cache@v1
@@ -48,6 +50,8 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Checkout Repo
         uses: actions/checkout@v1
+        with:
+          ref: refs/heads/master
       - name: cache node_modules
         uses: actions/cache@v1
         id: cache
