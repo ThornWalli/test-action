@@ -1,11 +1,12 @@
 name: Release
 on:
-  pull_request:
+  push:
     branches:
       - master
 
 jobs:
   install:
+    if: "! contains(toJSON(github.event.commits.*.msg), '[skip-ci]')"
     name: Install
     runs-on: ${{ matrix.os }}
 
